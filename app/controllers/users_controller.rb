@@ -10,10 +10,19 @@ class UsersController < ApplicationController
     end
  end
 
+ def index
+    users = User.all
+    if users
+        render json: users, status: :ok
+    else
+        render json: {errors: users.errors.full_messages}, status: :unprocessable_entity
+    end
+ end
+
  def show
     user = User.find_by(id: session[:user_id])
     if user
-        render json: status: :ok
+        render json: user, status: :ok
     else
         render json: {errors: "Unauthorized"}, status: :unauthorized
     end

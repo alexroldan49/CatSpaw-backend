@@ -2,7 +2,7 @@ class CatsController < ApplicationController
 
 
     def index
-        cats = Cats.all
+        cats = Cat.all
         render json: cats
     end    
     
